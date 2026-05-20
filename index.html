@@ -218,43 +218,15 @@
       <li data-node="pediatric"><span class="depts__k">05</span><span class="depts__ar">قسم الأطفال</span><span class="depts__en">Pediatric</span><span class="depts__d">غرفة مخصّصة — غرفة الحلزون</span></li>
     </ul>
 
-    <figure class="depts__diagram" data-anim data-anim-keep>
-      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" id="depts-svg" aria-hidden="true">
-        <!-- subtle outer pulse ring -->
-        <circle class="depts__pulse" cx="180" cy="180" r="140" fill="none" stroke="#D97757" stroke-width="1" opacity="0"/>
-        <!-- main orbit (animated draw) -->
-        <circle class="depts__orbit" cx="180" cy="180" r="140" fill="none" stroke="#0E1A5F" stroke-width="1.2"/>
-        <!-- nodes -->
-        <g class="depts__node" data-node="fillings"  transform="translate(180 40)">
-          <circle class="depts__halo" r="14" fill="#D97757" opacity="0"/>
-          <circle class="depts__dot" r="6" fill="#D97757"/>
-          <text y="-16" text-anchor="middle">الحشوات</text>
-        </g>
-        <g class="depts__node" data-node="surgery" transform="translate(313 137)">
-          <circle class="depts__halo" r="14" fill="#D97757" opacity="0"/>
-          <circle class="depts__dot" r="6" fill="#D97757"/>
-          <text y="-16" text-anchor="middle">الجراحة</text>
-        </g>
-        <g class="depts__node" data-node="ortho" transform="translate(262 296)">
-          <circle class="depts__halo" r="14" fill="#D97757" opacity="0"/>
-          <circle class="depts__dot" r="6" fill="#D97757"/>
-          <text y="24" text-anchor="middle">التقويم</text>
-        </g>
-        <g class="depts__node" data-node="prosth" transform="translate(98 296)">
-          <circle class="depts__halo" r="14" fill="#D97757" opacity="0"/>
-          <circle class="depts__dot" r="6" fill="#D97757"/>
-          <text y="24" text-anchor="middle">التعويض</text>
-        </g>
-        <g class="depts__node" data-node="pediatric" transform="translate(47 137)">
-          <circle class="depts__halo" r="14" fill="#D97757" opacity="0"/>
-          <circle class="depts__dot" r="6" fill="#D97757"/>
-          <text y="-16" text-anchor="middle">الأطفال</text>
-        </g>
-        <!-- center -->
-        <circle cx="180" cy="180" r="48" fill="#0E1A5F"/>
-        <text x="180" y="178" text-anchor="middle" fill="#F2EDE4" class="depts__center">أقسام</text>
-        <text x="180" y="200" text-anchor="middle" fill="#F2EDE4" class="depts__center-sub">العيادة</text>
-      </svg>
+    <figure class="depts__panel" data-anim>
+      <span class="depts__panel-ghost" aria-hidden="true">٠١</span>
+      <span class="depts__panel-en-tag">Fillings</span>
+      <div class="depts__panel-body">
+        <h3 class="depts__panel-name">قسم الحشوات</h3>
+        <div class="depts__panel-rule"></div>
+        <p class="depts__panel-desc">بأنواعها — تجميلية بتقنية البايوميمتك</p>
+        <p class="depts__panel-doctor">د. محمد باقر</p>
+      </div>
     </figure>
   </div>
 </section>
@@ -424,17 +396,13 @@
   <header class="section-head">
     <span class="section-num">07</span>
     <h2 class="section-title">قبل وبعد</h2>
-    <p class="section-sub">حالات حقيقية، بأسماء الأطباء وبدون فلاتر.</p>
+    <p class="section-sub">اسحب الشريط — شف الفرق بنفسك. حالات حقيقية، بدون فلاتر.</p>
+    <p class="section-note">السحب يشتغل باللمس أيضًا — جرّبها من تلفونك.</p>
   </header>
 
-  <article class="case case--feature">
-    <figure class="case__photo" data-anim>
-      <img src="img/cases/zircon.jpg" alt="ثلاث مراحل: السن قبل، بعد إزالة الحشوة، بعد تغليف الزركون" />
-      <figcaption class="case__steps">
-        <span>قبل</span><span>أثناء</span><span>بعد</span>
-      </figcaption>
-    </figure>
-    <div class="case__copy" data-anim>
+  <!-- Feature case: zircon — drag slider -->
+  <article class="case case--feature" data-anim>
+    <div class="case__copy">
       <p class="case__num">07 · 1</p>
       <h3 class="case__title">تغليفات الزركون</h3>
       <p class="case__by">د. جعفر رحيم</p>
@@ -445,31 +413,99 @@
         سن متضرّر تحت حشوة معدنية قديمة. بدل القلع، الترميم بزركون يحفظ الجذر —
         ويرجّع الشكل والقوّة.
       </p>
+      <div class="case__steps-chips">
+        <span class="chip"><span class="chip__dot"></span>الحالة الأصلية</span>
+        <span class="chip"><span class="chip__dot chip__dot--mid"></span>بعد إزالة الحشوة</span>
+        <span class="chip"><span class="chip__dot chip__dot--end"></span>بعد التغليف</span>
+      </div>
+    </div>
+
+    <div
+      class="compare"
+      role="slider"
+      aria-label="اسحب لمقارنة الحالة قبل وبعد"
+      aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+      tabindex="0"
+    >
+      <img class="compare__base"    src="img/cases/compare/zircon_after.jpg"  alt="بعد تغليف الزركون" />
+      <div class="compare__top">
+        <img src="img/cases/compare/zircon_before.jpg" alt="السن قبل العلاج" />
+      </div>
+      <div class="compare__handle" aria-hidden="true">
+        <span class="compare__handle-bar"></span>
+        <span class="compare__handle-knob">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 6 8 12 14 18"/><polyline points="10 6 16 12 10 18"/></svg>
+        </span>
+      </div>
+      <span class="compare__label compare__label--before">قبل</span>
+      <span class="compare__label compare__label--after">بعد</span>
     </div>
   </article>
 
-  <ul class="cases__grid">
-    <li class="case-mini" data-anim>
-      <figure><img src="img/cases/filling.jpg" alt="حشوة تجميلية بتقنية البايوميمتك" /></figure>
-      <h4>الحشوات التجميلية</h4>
-      <p class="case-mini__by">بايوميمتك · د. محمد باقر</p>
-    </li>
-    <li class="case-mini" data-anim>
-      <figure><img src="img/cases/braces.jpg" alt="تقدّم حالة تقويم" /></figure>
-      <h4>تقويم الأسنان</h4>
-      <p class="case-mini__by">د. دينا حامد</p>
-    </li>
-    <li class="case-mini" data-anim>
-      <figure><img src="img/cases/amalgam.jpg" alt="استبدال حشوة معدنية بحشوة تجميلية" /></figure>
-      <h4>استبدال الحشوة المعدنية</h4>
-      <p class="case-mini__by">«مو كل سن متضرّر لازم ينشال»</p>
-    </li>
-    <li class="case-mini" data-anim>
-      <figure><img src="img/cases/smile.jpg" alt="تصميم ابتسامة شامل" /></figure>
-      <h4>تصميم الابتسامة</h4>
-      <p class="case-mini__by">خطّة شاملة · خطوة بخطوة</p>
-    </li>
-  </ul>
+  <!-- Two more compare cases -->
+  <div class="cases__pair">
+    <article class="case case--compare" data-anim>
+      <div class="case__head">
+        <p class="case__num">07 · 2</p>
+        <h3 class="case__title-sm">تقويم الأسنان</h3>
+        <p class="case__by">د. دينا حامد · أخصائية التقويم</p>
+      </div>
+      <div
+        class="compare compare--sm"
+        role="slider"
+        aria-label="اسحب لمقارنة قبل وبعد التقويم"
+        aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+        tabindex="0"
+      >
+        <img class="compare__base" src="img/cases/compare/braces_b_after.jpg" alt="بعد التقويم" />
+        <div class="compare__top">
+          <img src="img/cases/compare/braces_b_before.jpg" alt="قبل التقويم" />
+        </div>
+        <div class="compare__handle" aria-hidden="true">
+          <span class="compare__handle-bar"></span>
+          <span class="compare__handle-knob">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 6 8 12 14 18"/><polyline points="10 6 16 12 10 18"/></svg>
+          </span>
+        </div>
+        <span class="compare__label compare__label--before">قبل</span>
+        <span class="compare__label compare__label--after">بعد</span>
+      </div>
+      <p class="case__body case__body--sm">
+        تقويم يصلّح ترتيب الأسنان وموقعها في الفك — تنظيف أسهل، أكل أراحه، وابتسامة أصدق.
+      </p>
+    </article>
+
+    <article class="case case--compare" data-anim>
+      <div class="case__head">
+        <p class="case__num">07 · 3</p>
+        <h3 class="case__title-sm">حالة تقويم ثانية</h3>
+        <p class="case__by">@global.orthodontics</p>
+      </div>
+      <div
+        class="compare compare--sm"
+        role="slider"
+        aria-label="اسحب لمقارنة قبل وبعد التقويم"
+        aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+        tabindex="0"
+      >
+        <img class="compare__base" src="img/cases/compare/braces_a_after.jpg" alt="بعد التقويم" />
+        <div class="compare__top">
+          <img src="img/cases/compare/braces_a_before.jpg" alt="قبل التقويم" />
+        </div>
+        <div class="compare__handle" aria-hidden="true">
+          <span class="compare__handle-bar"></span>
+          <span class="compare__handle-knob">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 6 8 12 14 18"/><polyline points="10 6 16 12 10 18"/></svg>
+          </span>
+        </div>
+        <span class="compare__label compare__label--before">قبل</span>
+        <span class="compare__label compare__label--after">بعد</span>
+      </div>
+      <p class="case__body case__body--sm">
+        فجوات ومحاور غير منتظمة قبل العلاج — بعد التقويم، ترتيب وتوازن وأسنان واضحة.
+      </p>
+    </article>
+  </div>
 </section>
 
 <!-- ─────────── VOICES ─────────── -->
