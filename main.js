@@ -10,12 +10,25 @@ window.addEventListener('load', () => {
   document.querySelectorAll('.hero [data-anim]').forEach(el => el.classList.add('in'));
 });
 
+/* ── Compare-slider entrance hint ─────────────────────── */
+function runCompareHint(compare) {
+  if (compare._hintDone || compare._touched || reduceMotion) return;
+  compare._hintDone = true;
+  // Slide left → right → center; CSS transitions on clip-path/left do the smoothing
+  setTimeout(() => compare.style.setProperty('--x', '22%'), 700);
+  setTimeout(() => compare.style.setProperty('--x', '78%'), 1800);
+  setTimeout(() => compare.style.setProperty('--x', '50%'), 2900);
+}
+
 /* ── Scroll reveal ─────────────────────────────────────── */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('in');
       io.unobserve(e.target);
+      // Fire compare hint when a case card enters the viewport
+      const compare = e.target.querySelector?.('.compare');
+      if (compare) runCompareHint(compare);
     }
   });
 }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
@@ -145,6 +158,7 @@ document.querySelectorAll('.compare').forEach((compare) => {
   }
 
   compare.addEventListener('pointerdown', (e) => {
+    compare._touched = true;
     pid = e.pointerId;
     compare.setPointerCapture(pid);
     compare.classList.add('is-grabbing');
